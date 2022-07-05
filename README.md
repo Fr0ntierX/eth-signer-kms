@@ -1,27 +1,28 @@
-# @rumblefishdev/eth-signer-kms
+# Source: @rumblefishdev/eth-signer-kms
 
 Web3 signer that derives address and signs transactions using [AWS KMS](https://aws.amazon.com/kms/).
 
 ## Install
-```
-$ npm i @rumblefishdev/eth-signer-kms
+
+```script
+$ npm i @fr0ntierx/eth-signer-kms
 ```
 
 ## Requirements
-```
+
+```script
 aws-sdk
 ```
 
 In order to work properly AWS KMS managed key must be:
+
 - asymmetric
 - able to sign and verify
 - ECC_SECG_P256K1 specified
 
-
 ## Usage
 
 #### * Before use, make sure that AWS SDK is properly configured! Find out how to do it [here](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/configuring-the-jssdk.html).
-
 
 KMSSigner is an [ethers](https://docs.ethers.io/v5/api/signer/) `Signer` instance that uses AWS KMS stored keys to sign ethereum transactions.
 
@@ -39,27 +40,35 @@ https://github.com/ethereumjs/ethereumjs-monorepo
 ## Examples
 
 ##### KmsSigner
-- [KmsSigner initialization](https://github.com/rumblefishdev/eth-signer-kms/blob/master/tests/signer.test.ts#L50)
-```
+
+- [KmsSigner initialization](https://github.com/Fr0ntierX/eth-signer-kms/blob/master/tests/signer.test.ts#L50)
+
+```script
 new KMSSigner(provider, keyId, kms)
 ```
 
-- [signMessage](https://github.com/rumblefishdev/eth-signer-kms/blob/master/tests/signer.test.ts#L72)
-```
+- [signMessage](https://github.com/Fr0ntierX/eth-signer-kms/blob/master/tests/signer.test.ts#L72)
+
+```script
 await kmsSigner.signMessage(...)
 ```
 
-- [_signTypedData](https://github.com/rumblefishdev/eth-signer-kms/blob/master/tests/signer.test.ts#L102)
-```
+- [_signTypedData](https://github.com/Fr0ntierX/eth-signer-kms/blob/master/tests/signer.test.ts#L102)
+
+```script
 await kmsSigner._signTypedData(...)
 ```
+
 ##### function getEthAddressFromKMS
-- [getEthAddressFromKMS](https://github.com/rumblefishdev/eth-signer-kms/blob/master/tests/signer.test.ts#L39)
-```
+
+- [getEthAddressFromKMS](https://github.com/Fr0ntierX/eth-signer-kms/blob/master/tests/signer.test.ts#L39)
+
+```script
 await getEthAddressFromKMS(...)
 ```
 
 ## Migration from v1.7.0 to v2.0.0:
+
 `KMSProvider` class became `KMSSigner`, as its instance no longer creates provider but receives one in constructor.
 
 That approach extracts provider dependency from the package and as a result makes it more flexible in terms of use and testing.
